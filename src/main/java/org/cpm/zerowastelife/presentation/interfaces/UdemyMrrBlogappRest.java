@@ -35,7 +35,7 @@ public interface UdemyMrrBlogappRest {
 	 * @return
 	 * @throws UmbsBaseException
 	 */
-	@RequestMapping(value="/api/post/{id}", method=RequestMethod.PUT)
+	@RequestMapping(value="/api/post", method=RequestMethod.PUT)
 	public JsonResponse<Boolean> addPost(@RequestBody Post post) throws UmbsBaseException;
 	
 	/**
