@@ -8,7 +8,7 @@ in your pgAdmin(PostgreSQL) first.
 
 - This service is built by Spring Boot, so next you should run this service.
 
-#### API
+## API
 
 1. Fetch all posts in the database: 
 ```
