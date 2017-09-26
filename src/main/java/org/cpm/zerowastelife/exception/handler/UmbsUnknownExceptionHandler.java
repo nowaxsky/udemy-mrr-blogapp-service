@@ -2,6 +2,7 @@ package org.cpm.zerowastelife.exception.handler;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 
+import org.cpm.zerowastelife.commons.contraints.UmbsBaseErrorCode;
 import org.cpm.zerowastelife.commons.log.factories.UmbsLogFactory;
 import org.cpm.zerowastelife.commons.response.JsonResponse;
 import org.cpm.zerowastelife.commons.utils.JsonResponseUtil;
@@ -14,15 +15,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class UmbsBaseExceptionHandler {
-	private final Logger logger = UmbsLogFactory.getLogger(UmbsBaseExceptionHandler.class);
+public class UmbsUnknownExceptionHandler {
+	private final Logger logger = UmbsLogFactory.getLogger(UmbsUnknownExceptionHandler.class);
 	
-	@ExceptionHandler(value = UmbsBaseException.class)
+	@ExceptionHandler(value = Exception.class)
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public JsonResponse<String> handlerError(HttpServletRequest req, UmbsBaseException e) {
-		logger.error(e.getErrorCode(), e);
-		JsonResponse<String> response = JsonResponseUtil.getFail(e.getErrorCode(), e.getMessage());
+	public JsonResponse<String> handlerError(HttpServletRequest req, Exception e) {
+		logger.error(UmbsBaseErrorCode.UNKNOWN_ERROR.getErrorCode(), e);
+		JsonResponse<String> response = JsonResponseUtil.getFail(UmbsBaseErrorCode.UNKNOWN_ERROR.getErrorCode(), e.getMessage());
 		return response;
 	}
 }

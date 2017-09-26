@@ -2,13 +2,14 @@ package org.cpm.zerowastelife.presentation;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.cpm.zerowastelife.commons.log.factories.UmbsLogFactory;
 import org.cpm.zerowastelife.commons.response.JsonResponse;
 import org.cpm.zerowastelife.commons.utils.JsonResponseUtil;
 import org.cpm.zerowastelife.entity.Post;
 import org.cpm.zerowastelife.exception.UmbsBaseException;
 import org.cpm.zerowastelife.presentation.interfaces.UdemyMrrBlogappRest;
 import org.cpm.zerowastelife.service.UdemyMrrBlogappService;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value="/umbs")
 public class UdemyMrrBlogappController implements UdemyMrrBlogappRest{
 
-	private final Logger logger = Logger.getLogger(UdemyMrrBlogappController.class);
+	private final Logger logger = UmbsLogFactory.getLogger(UdemyMrrBlogappController.class);
 	private UdemyMrrBlogappService service;
 	
 	@Autowired
@@ -33,7 +34,7 @@ public class UdemyMrrBlogappController implements UdemyMrrBlogappRest{
 			response = JsonResponseUtil.getSuccess(result, "successful");
 			return response;
 		} catch (UmbsBaseException e) {
-			logger.error(e);
+			logger.error("find all posts error", e);
 			throw e;
 		}
 	}
@@ -46,7 +47,7 @@ public class UdemyMrrBlogappController implements UdemyMrrBlogappRest{
 			response = JsonResponseUtil.getSuccess(result, "successful");
 			return response;
 		} catch (UmbsBaseException e) {
-			logger.error(e);
+			logger.error("find post by id error", e);
 			throw e;
 		}		
 	}
@@ -59,7 +60,7 @@ public class UdemyMrrBlogappController implements UdemyMrrBlogappRest{
 			response = JsonResponseUtil.getSuccess(isSuccess, "successful");
 			return response;
 		} catch (UmbsBaseException e) {
-			logger.error(e);
+			logger.error("add post error", e);
 			throw e;
 		}
 	}
@@ -72,7 +73,7 @@ public class UdemyMrrBlogappController implements UdemyMrrBlogappRest{
 			response = JsonResponseUtil.getSuccess(isSuccess, "successful");
 			return response;
 		} catch (UmbsBaseException e) {
-			logger.error(e);
+			logger.error("delete post error", e);
 			throw e;
 		}
 	}

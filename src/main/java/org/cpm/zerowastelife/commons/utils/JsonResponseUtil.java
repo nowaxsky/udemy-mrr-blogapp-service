@@ -11,4 +11,12 @@ public class JsonResponseUtil {
 		response.setMessage(message);
 		return response;
 	}
+	
+	public static JsonResponse getFail(String errorCode, String message) {
+		JsonResponse<Object> response = new JsonResponse<Object>();
+		response.setSuccess(false);
+		response.setValues(errorCode);
+		response.setMessage(message);
+		return response;
+	}
 }
